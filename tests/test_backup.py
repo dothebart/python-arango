@@ -1,4 +1,5 @@
 import pytest
+import time
 from packaging import version
 
 from arango.errno import DATABASE_NOT_FOUND, FILE_NOT_FOUND, FORBIDDEN, HTTP_NOT_FOUND
@@ -108,6 +109,7 @@ def test_backup_management(sys_db, bad_db, cluster, skip_tests, db_version):
 
     # Test restore backup.
     result = sys_db.backup.restore(backup_id_foo)
+    time.sleep(10)
     assert isinstance(result, dict)
 
     # Test restore backup with bad database.
